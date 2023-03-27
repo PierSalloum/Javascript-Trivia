@@ -1,0 +1,114 @@
+body {
+    font-family: monospace;
+    --yellowcolor: #f0db4f;
+}
+
+/* header */
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+}
+#title img {
+    height: auto;
+    width: 50px;
+}
+#title {
+    font-size: 34px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2%;
+}
+
+#navbar {
+    background-color: var(--yellowcolor);
+    color: white;
+    font-size: 20px;
+}
+#navbar ul {
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+    font-weight: 1000;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+/* header */
+
+/* container */
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+/* container */
+
+/* game */
+#game {
+    display: flex;
+    position: relative;
+    text-align: center;
+    flex-direction: column;
+    border: solid;
+    background-color: gray;
+    height: 600px;
+    width: auto;
+}
+#controls button {
+    position: absolute;
+    font-size: 32px;
+}
+#start {
+    left: 10%;
+    bottom: 20px;
+    padding: 10px;
+}
+#next{
+    right: 10%;
+    bottom: 20px;
+    padding: 10px;
+}
+/* game */
+
+/* about us */
+#aboutus {
+    border: solid;
+    background-color: gray;
+    height: 500px;
+}
+/* about us */
+
+/* coming soon */
+#comingsoon {
+    border: solid;
+    background-color: gray;
+    height: 500px;
+}
+/* coming soon */
+
+/* footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 34px;
+}
+#footertitle {
+    padding-bottom: 50px;
+}
+footer img {
+    height: auto;
+    width: 50px;
+}
+footer p {
+    font-size: 16px;
+}
+/* footer */
