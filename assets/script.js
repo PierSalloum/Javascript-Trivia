@@ -14,6 +14,8 @@
     let timerGame = document.getElementById("timer");
     let timerTimeLeft = 5;
     let intervalId = null
+    let questionDisplay = document.getElementById("questions");
+    let currentQuestion = 0;
 
     playHide.addEventListener("click", myTimer)
       intervalId = setInterval(myTimer, 1000);
@@ -25,6 +27,7 @@
       }
       else if (toggleGame.style.visibility === "visible") {
         timerTimeLeft--;
+        gameLogic();
         timerGame.innerHTML = timerTimeLeft;
       }
     }
@@ -46,21 +49,50 @@
       question: "what is 2*2",
       answers:  {
         answer1: "2",
-        answer2: "8",
+        answer2: "4",
         answer3: "7",
-        answer4: "4"
+        answer4: "8"
       },
-      correctAnswer: "answer4"   
+      correctAnswer: "answer2"   
     }
     
   ];
   //array of questions
 
-    let questionDisplay = document.getElementById("questions");
+//question and anwswer randomness logic
+    let btnsArray = ["btn1", "btn2", "btn3", "btn4"]
+    function shuffle(array) {
+      let currentIndex = array.length,  randomIndex;
 
-    if (toggleGame.style.visibility === "visible"); {
-      questionDisplay.innerHTML = 
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
     }
+    shuffle(btnsArray);
+    shuffle(questions);
+
+    function gameLogic(){
+      questionDisplay.innerHTML = questions[currentQuestion].question;
+
+      document.getElementById(btnsArray[0]).innerHTML = questions[currentQuestion].answers.answer1;
+      document.getElementById(btnsArray[1]).innerHTML = questions[currentQuestion].answers.answer2;
+      document.getElementById(btnsArray[2]).innerHTML = questions[currentQuestion].answers.answer3;
+      document.getElementById(btnsArray[3]).innerHTML = questions[currentQuestion].answers.answer4;
+    }
+//question and anwswer randomness logic
+
+//next question
+    
 
 
 
