@@ -58,7 +58,7 @@ header {
 
 #startgame {
     border: solid;
-    margin-top: 70%;
+    margin-top: 10%;
     width: 200px;
     margin-left: auto;
     margin-right: auto;
@@ -120,9 +120,7 @@ header {
     background-image: linear-gradient(white, rgb(190, 186, 186));
     border-radius: 25px;
 }   
-#controls button {
 
-}
 #start {
     font-size: 30px;
     margin-right: 15%;
@@ -143,21 +141,21 @@ header {
     height: auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    font-size: 50px;
 }
 #leaderboard h1 {
-    font-size: 30px;
+    font-size: 40px;
     background-color: #f0db4f;
     padding: 2%;
 }
 #leaderboard h2 {
-    font-size: 20px;
+    font-size: 30px;
     background-color: #f0db4f;
     padding: 1%;
 }
 #leaderboard ul {
     font-size: 18px;
     color: white;
+    font-size: 30px;
 }
 #leaderboard li {
     padding: 5%;
@@ -214,6 +212,12 @@ footer p {
 
 #inputsection {
     visibility: hidden;
+    font-size: 20px;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* footer */
 
@@ -232,7 +236,14 @@ footer p {
 }
 
 @media screen and (min-width:850px) {
+    #inputsection {
+        font-size: 30px;
+    }
     #questions{
+        font-size: 40px;
+    }
+    #answers {
+        font-size: 30px;
     }
 }
 
