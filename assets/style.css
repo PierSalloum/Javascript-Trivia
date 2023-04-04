@@ -25,14 +25,19 @@ header {
     background-color: var(--yellowcolor);
     color: white;
     font-size: 20px;
-}
-#navbar ul {
     display: flex;
     justify-content: space-evenly;
+}
+#navbar ul {
     color: black;
     font-weight: 1000;
     padding-bottom: 10px;
     margin-top: 10px;
+}
+
+#navbar a {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 /* header */
 
@@ -143,10 +148,12 @@ header {
 #leaderboard h1 {
     font-size: 30px;
     background-color: #f0db4f;
+    padding: 2%;
 }
 #leaderboard h2 {
     font-size: 20px;
     background-color: #f0db4f;
+    padding: 1%;
 }
 #leaderboard ul {
     font-size: 18px;
@@ -164,17 +171,20 @@ header {
     background-color: gray;
     height: auto;
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 200px;
     font-size: 30px;
+    
 }
 #comingsoon h1 {
     background-color: #f0db4f;
+    padding: 2%;
 }
 #comingsoon h2 {
     background-color: black;
     color: white;
     font-size: 30px;
     font-weight: 100;
+    padding: 2%;
 }
 /* coming soon */
 
@@ -200,6 +210,10 @@ footer img {
 }
 footer p {
     font-size: 16px;
+}
+
+#inputsection {
+    visibility: hidden;
 }
 /* footer */
 

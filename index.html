@@ -10,6 +10,7 @@
     <title>Javascript Trivia</title>
 </head>
 <body>
+
     <header>
         <section id="title">
             <img src="./assets/jslogo.png">
@@ -25,25 +26,30 @@
             </nav>
         </section>
     </header>
-<!-- shell for items in website -->
+
+<!--main container for website with start button-->
     <main class="container">
         <section id="startgame">
             <h1>PLAY NOW</h1>
         </section>
+<!---->
 
-
-
-<!-- game section of website -->
+<!--game(invisible from the start)-->
         <section id="game">
+
                 <div id="gamescore">
+
                     <div id="score">
                         <p>Score: </p>
                         <p id="scorenumber">0</p>
                     </div>
+
                     <div>
                         <p id="timer">60</p>
                     </div>
+
                 </div>
+
                 <p id="questions"></p>
                 <div id="answers">
                     <button id="btn1">Answer1</button>
@@ -51,31 +57,38 @@
                     <button id="btn3">Answer3</button>
                     <button id="btn4">Answer4</button>
                 </div>
-                </section>
-            </div>
-        </section>
 
+            </section>
+<!---->
+            
+<!--input for leaderboard-->
+        <form id="inputsection">
+            <p id="finalscore"></p>
+            <label for="nameInput">Enter your Name:</label>
+            <input type="text" id="nameInput">
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+<!---->
 
-
-
-<!-- game section of website -->
+<!--leaderboard-->
         <section id="leaderboard">
             <h1>Leaderboard</h1>
-            <h2>TOP 5 EVER</h2>
+            <h2>Latest Score</h2>
                 <ul>
-                    <li>1st - PLAYER#</li>
-                    <li>2nd - PLAYER#</li>
-                    <li>3rd - PLAYER#</li>
-                    <li>4th - PLAYER#</li>
-                    <li>5th - PLAYER#</li>
+                    <li id="player"></li>
                 </ul>
         </section>
+<!---->
+
+<!--placeholder section-->
         <section id="comingsoon">
             <h1>Coming Soon</h1>
             <h2>More features to be added. Please visit us again later!</h2>
         </section>
     </main>
-    <!-- footer with name and socials -->
+<!---->
+
+<!-- footer with name and socials -->
     <footer>
     <h2>Follow Us</h2>
         <ul>
@@ -83,5 +96,7 @@
         </ul>
         <p>@piersalloum</p>
     </footer>
+<!---->
+
 </body>
 </html>

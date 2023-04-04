@@ -4,9 +4,10 @@ let playHide = document.getElementById("startgame");
 
 playHide.addEventListener("click", function () {
   toggleGame.style.visibility = "visible";
-  gameLogic();
   if (toggleGame.style.visibility === "visible") {
     playHide.remove();
+    questionDisplay()
+    answersDisplay()
   }
 });
 //code to remove start and show game from hidden visibility
@@ -14,17 +15,16 @@ playHide.addEventListener("click", function () {
 
 //code for timer
 let timerGame = document.getElementById("timer");
-let timerTimeLeft = 20;
-let questionDisplay = document.getElementById("questions");
-let currentQuestion = 0;
+let timerTimeLeft = 60;
 
 let intervalId = null;
 intervalId = setInterval(myTimer, 1000);
 
 function myTimer() {
-  if (timerTimeLeft <= 0) {
+  if (timerTimeLeft === 0) {
     clearInterval(intervalId);
     timerGame.innerHTML = "Time's up!";
+    endGame()
   }
   else if (toggleGame.style.visibility === "visible") {
     timerTimeLeft--;
@@ -33,150 +33,305 @@ function myTimer() {
 }
 //code for timer
 
-//array of questions
+//array of random questions
 const questions = [
   {
-    question: "what is 2+8",
+    question: "Which statement cannot be used to declare a variable in JavaScript?",
     answers: {
-      answer1: "13",
-      answer2: "10",
-      answer3: "11",
-      answer4: "7"
+      answer1: "int",
+      answer2: "let",
+      answer3: "var",
+      answer4: "const"
     },
-    correctAnswer: "10"
+    correctAnswer: "int"
   },
   {
-    question: "what is 11+9",
+    question: "Inside which HTML element do we put the JavaScript?",
     answers: {
-      answer1: "13",
-      answer2: "8",
-      answer3: "11",
-      answer4: "20"
+      answer1: "javascript",
+      answer2: "js",
+      answer3: "script",
+      answer4: "scripting"
     },
-    correctAnswer: "20"
+    correctAnswer: "script"
   },
   {
-    question: "what is 2+5",
+    question: "What is the correct JavaScript syntax to write 'Hello World'?",
     answers: {
-      answer1: "13",
-      answer2: "8",
-      answer3: "11",
-      answer4: "7"
+      answer1: "document.write('Hello World')",
+      answer2: "'Hello World'",
+      answer3: "var",
+      answer4: "print hello world"
     },
-    correctAnswer: "7"
+    correctAnswer: "document.write('Hello World')"
   },
   {
-    question: "what is 2+9",
+    question: "How do you write 'Hello World' in an alert box?",
     answers: {
-      answer1: "13",
-      answer2: "8",
-      answer3: "11",
-      answer4: "7"
+      answer1: "int print()hello world",
+      answer2: "let print",
+      answer3: "alert('Hello World')",
+      answer4: "const world"
     },
-    correctAnswer: "11"
+    correctAnswer: "alert('Hello World')"
   },
   {
-    question: "what is 2*2",
+    question: "How do you create a function?",
     answers: {
-      answer1: "2",
-      answer2: "4",
-      answer3: "7",
-      answer4: "8"
+      answer1: "int set function",
+      answer2: "function myFunction()",
+      answer3: "var()",
+      answer4: "function set ()"
     },
-    correctAnswer: "4"
+    correctAnswer: "function myFunction()"
+  },
+  {
+    question: "How do you round the number 7.25, to the nearest whole number?",
+    answers: {
+      answer1: "round.math(7.25)",
+      answer2: "rnd(7.25)",
+      answer3: "round(7)",
+      answer4: "Math.round(7.25)"
+    },
+    correctAnswer: "Math.round(7.25)"
+  },
+  {
+    question: "In JavaScript, which of the following is a logical operator?",
+    answers: {
+      answer1: "&&",
+      answer2: "%",
+      answer3: "p",
+      answer4: "/"
+    },
+    correctAnswer: "&&"
+  },
+  {
+    question: "When you want to use JavaScript to manipulate the browser window, the browser window's JavaScript object name is",
+    answers: {
+      answer1: "int browser",
+      answer2: "let window",
+      answer3: "window",
+      answer4: "window.window"
+    },
+    correctAnswer: "window"
+  },
+  {
+    question: "Alert(message), close() and reset() are JavaScript:",
+    answers: {
+      answer1: "series",
+      answer2: "command",
+      answer3: "properties",
+      answer4: "methods"
+    },
+    correctAnswer: "methods"
+  },
+  {
+    question: "Which HTML attribute is used to define inline styles?",
+    answers: {
+      answer1: "style",
+      answer2: "font",
+      answer3: "class",
+      answer4: "const"
+    },
+    correctAnswer: "style"
   }
 
-];
+];  
 //array of questions
 
-//question and anwswer randomness logic
-let btnsArray = ["btn1", "btn2", "btn3", "btn4"]
-function shuffle(array) {
-  let currentIndex = array.length, randomIndex;
+//display current question in array
+function questionDisplay() {
+  questionText.textContent = questions[currentQuestion].question
+}
+//display current question in array
 
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
+let currentQuestion = 0
+currentQuestionRandomizer()
 
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+function currentQuestionRandomizer() {
+  currentQuestion = Math.floor(Math.random() * questions.length);
+}
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+let questionText = document.getElementById("questions")
+
+let button1 = document.getElementById("btn1")
+let button2 = document.getElementById("btn2")
+let button3 = document.getElementById("btn3")
+let button4 = document.getElementById("btn4")
+
+//logic to verify answers
+function answersDisplay() {
+  button1.textContent = questions[currentQuestion].answers.answer1;
+  button1.addEventListener("click", function() {
+    if (button1.textContent === questions[currentQuestion].correctAnswer) {
+      console.log("correct");
+      gameTrackerLogic()
+      scoreUpdater()
+      endGame()
+      questions.splice(currentQuestion, 1)
+      currentQuestionRandomizer()
+      button1.textContent = questions[currentQuestion].answers.answer1;
+      button2.textContent = questions[currentQuestion].answers.answer2;
+      button3.textContent = questions[currentQuestion].answers.answer3;
+      button4.textContent = questions[currentQuestion].answers.answer4;
+      questionDisplay();
+    } else {
+      console.log("incorrect");
+      scoreUpdaterWrong ()
+      negativeCheck()
+      timerSubtract()
+    }  
+  });  
+  button2.textContent = questions[currentQuestion].answers.answer2;
+  button2.addEventListener("click", function() {
+    if (button2.textContent === questions[currentQuestion].correctAnswer) {
+      console.log("correct");
+      gameTrackerLogic()
+      scoreUpdater()
+      endGame()
+      questions.splice(currentQuestion, 1)
+      currentQuestionRandomizer()
+      button1.textContent = questions[currentQuestion].answers.answer1;
+      button2.textContent = questions[currentQuestion].answers.answer2;
+      button3.textContent = questions[currentQuestion].answers.answer3;
+      button4.textContent = questions[currentQuestion].answers.answer4;
+      questionDisplay();
+    } else {
+      console.log("incorrect");
+      scoreUpdaterWrong ()
+      negativeCheck()
+      timerSubtract()
+    }  
+  });  
+  button3.textContent = questions[currentQuestion].answers.answer3;
+  button3.addEventListener("click", function() {
+    if (button3.textContent === questions[currentQuestion].correctAnswer) {
+      console.log("correct");
+      gameTrackerLogic()
+      scoreUpdater()
+      endGame()
+      questions.splice(currentQuestion, 1)
+      currentQuestionRandomizer()
+      button1.textContent = questions[currentQuestion].answers.answer1;
+      button2.textContent = questions[currentQuestion].answers.answer2;
+      button3.textContent = questions[currentQuestion].answers.answer3;
+      button4.textContent = questions[currentQuestion].answers.answer4;
+      questionDisplay();
+    } else {
+      console.log("incorrect");
+      scoreUpdaterWrong ()
+      negativeCheck()
+      timerSubtract()
+    }  
+  });  
+  button4.textContent = questions[currentQuestion].answers.answer4;
+  button4.addEventListener("click", function() {
+    if (button4.textContent === questions[currentQuestion].correctAnswer) {
+      console.log("correct");
+      gameTrackerLogic()
+      scoreUpdater()
+      endGame()
+      questions.splice(currentQuestion, 1)
+      currentQuestionRandomizer()
+      button1.textContent = questions[currentQuestion].answers.answer1;
+      button2.textContent = questions[currentQuestion].answers.answer2;
+      button3.textContent = questions[currentQuestion].answers.answer3;
+      button4.textContent = questions[currentQuestion].answers.answer4;
+      questionDisplay();
+    } else {
+      console.log("incorrect");
+      scoreUpdaterWrong ()
+      negativeCheck()
+      timerSubtract()
+    }  
+  });  
+}  
+//logic to verify answers
+
+
+//fix for score going negative
+function negativeCheck() {
+  if (scoreCount <= 0) {
+    scoreCount = 0
   }
-
-  return array;
-}
-shuffle(btnsArray);
-shuffle(questions);
-
-function gameLogic() {
-  setQuestions();
-}
-//question and anwswer randomness logic
-//next question
-// let scoreGame = document.getElementById("gamescore");
-
-//  if (answer === questions[currentQuestion].answer) {
-//    scoreGame += 10;
-//  } else {
-
-
-//  }
-
-function setQuestions() {
-  questionDisplay.innerHTML = questions[currentQuestion].question;
-
-  console.log(currentQuestion)
-
-  const btn1 = document.getElementById(btnsArray[0]);
-  btn1.innerHTML = questions[currentQuestion].answers.answer1;
-  btn1.addEventListener("click", () => {
-    if (questions[currentQuestion].answers.answer1 === questions[currentQuestion].correctAnswer) console.log("correct!");
-    setNextQuestion();
-  });
-
-  const btn2 = document.getElementById(btnsArray[1]);
-  btn2.innerHTML = questions[currentQuestion].answers.answer2;
-  btn2.addEventListener("click", () => {
-    if (questions[currentQuestion].answers.answer2 === questions[currentQuestion].correctAnswer) console.log("correct!");
-    setNextQuestion();
-
-  });
-
-  const btn3 = document.getElementById(btnsArray[2]);
-  btn3.innerHTML = questions[currentQuestion].answers.answer3;
-  btn3.addEventListener("click", () => {
-    if (questions[currentQuestion].answers.answer3 === questions[currentQuestion].correctAnswer) console.log("correct!");
-    setNextQuestion();
-  });
-
-  const btn4 = document.getElementById(btnsArray[3]);
-  btn4.innerHTML = questions[currentQuestion].answers.answer4;
-  btn4.addEventListener("click", () => {
-    if (questions[currentQuestion].answers.answer4 === questions[currentQuestion].correctAnswer) console.log("correct!");
-    setNextQuestion();
-  });
 }
 
-function setNextQuestion() {
-  if (currentQuestion === questions.length - 1) {
-    alert("game ended");
-  } else {
-    setQuestions();
-    currentQuestion = currentQuestion + 1;
-    console.log("setting next questions...")
+//endgame logic
+let gameTracker = 0
+
+function gameTrackerLogic() {
+  gameTracker++
+  console.log(gameTracker)
+}
+
+let inputSection = document.getElementById("inputsection")
+
+function endGame() {
+  if (timerTimeLeft === 0) {
+    console.log("game over")
+    toggleGame.remove()
+    ScoreTrigger()
+    inputSection.style.visibility ="visible"
+    }
+  if (gameTracker === 10) {
+    console.log("game over")
+    toggleGame.remove()
+    ScoreTrigger()
+    inputSection.style.visibility ="visible"
+  }
+  else {
+    console.log("continue")
   }
 }
+//endgame logic
+
+//score updater
+let scoreCount = 0
+let scoreCountTracker = document.getElementById("scorenumber")
+
+function scoreUpdater() {
+  scoreCount++
+  scoreCountTracker.textContent = scoreCount
+}
+
+function scoreUpdaterWrong () {
+  scoreCount--
+  scoreCountTracker.textContent = scoreCount
+}
+//score updater
+
+//leaderboard code
+
+let finalScoreUpdater = document.getElementById("finalscore")
+finalScoreUpdater.textContent = "Final Score: " + scoreCount;
+
+function ScoreTrigger() {
+  finalScoreUpdater.textContent = "Final Score: " + scoreCount;
+}
+
+let playerDisplay = document.getElementById("player").textContent
+let playerStorage = window.localStorage.getItem("playerStorage")
+playerDisplay.textContent = playerStorage
+
+if (playerStorage) {
+  const playerDisplay = document.getElementById("player");
+  playerDisplay.textContent = playerStorage;
+}
+
+function submitForm() {
+  const nameInput = document.getElementById('nameInput');
+  const name = nameInput.value;
+  const score = scoreCount + " points";
+  const scorePrinter = name +" "+ score
+  player.textContent = scorePrinter
+  window.localStorage.setItem("playerStorage", scorePrinter)
+  inputSection.style.visibility ="hidden"
+}
+
+function timerSubtract() {
+  timerTimeLeft -= 3
+}
 
 
-
-
-
-
-
-
-
-
+//leaderboard code
 
