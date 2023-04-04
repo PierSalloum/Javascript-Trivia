@@ -1,10 +1,10 @@
 Project Title: Javascript Trivia.
 
-Description: Website with a Javascript themed trivia, and leaderboards for high scores. The website is responsive to the device's screen size, and the trivia will print random questions and answers everytime a new question is shown, or the website is refreshed.
+Description: Website with a Javascript themed trivia, and leaderboards for high scores. The website is responsive to the device's screen size, and the trivia will print random questions and answer sets when the play button is pressed.
 
-How to Use: There is no installation required. You can access the project using the provided link. Press play now to start the game. Select the right answer to score points. If the wrong answer is selected, the next question will be shown. the game is over until all questions are answered, or until the timer runs out.
+How to Use: There is no installation required. You can access the project using the provided link. Press play now to start the game. Select the right answer to score points. If the wrong answer is selected, a point will be subtracted, and 3 seconds will be taken away from the timer. the game is over when all questions are answered, or until the timer runs out.
 
--
+-https://piersalloum.github.io/Javascript-Trivia/
 
 References:
 -https://www.w3schools.com/

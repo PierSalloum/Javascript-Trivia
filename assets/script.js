@@ -331,7 +331,4 @@ function submitForm() {
 function timerSubtract() {
   timerTimeLeft -= 3
 }
-
-
 //leaderboard code
-
